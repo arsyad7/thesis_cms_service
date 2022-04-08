@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      tm_product.hasMany(models.tt_contract_header, { foreignKey: 'product_id' });
     }
   };
   tm_product.init({
@@ -19,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'tm_product',
+    timestamps: false
   });
   return tm_product;
 };

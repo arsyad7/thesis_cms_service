@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      tm_contract_type.hasMany(models.tt_contract_header, { foreignKey: 'contract_type_id' });
     }
   };
   tm_contract_type.init({
@@ -19,6 +20,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'tm_contract_type',
+    timestamps: false,
+    freezeTableName: 'tm_contract_type'
   });
   return tm_contract_type;
 };

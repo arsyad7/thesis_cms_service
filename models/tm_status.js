@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      tm_status.hasMany(models.tt_contract_header, { foreignKey: 'status_id' });
     }
   };
   tm_status.init({
@@ -18,6 +19,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'tm_status',
+    timestamps: false,
+    freezeTableName: 'tm_status'
   });
   return tm_status;
 };

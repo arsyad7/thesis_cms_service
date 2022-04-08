@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class tm_contract_header extends Model {
+  class tt_contract_header extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,9 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      tt_contract_header.belongsTo(models.tm_product, { foreignKey: 'product_id' });
+      tt_contract_header.belongsTo(models.tm_vendor, { foreignKey: 'vendor_id' });
+      tt_contract_header.belongsTo(models.tm_status, { foreignKey: 'status_id' });
+      tt_contract_header.belongsTo(models.tm_contract_type, { foreignKey: 'contract_type_id' });
+      tt_contract_header.belongsTo(models.tm_users, { foreignKey: 'creator' });
+      tt_contract_header.hasMany(models.tt_attachment_header, { foreignKey: 'header' });
     }
   };
-  tm_contract_header.init({
+  tt_contract_header.init({
     product_id: DataTypes.INTEGER,
     name_jobs: DataTypes.STRING,
     location_jobs: DataTypes.STRING,
@@ -28,7 +34,9 @@ module.exports = (sequelize, DataTypes) => {
     created: DataTypes.DATE
   }, {
     sequelize,
-    modelName: 'tm_contract_header',
+    modelName: 'tt_contract_header',
+    timestamps: false,
+    freezeTableName: 'tt_contract_header'
   });
-  return tm_contract_header;
+  return tt_contract_header;
 };

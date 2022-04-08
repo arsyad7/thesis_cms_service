@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      tm_vendor.hasMany(models.tt_contract_header, { foreignKey: 'vendor_id' });
     }
   };
   tm_vendor.init({
@@ -22,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'tm_vendor',
+    timestamps: false
   });
   return tm_vendor;
 };

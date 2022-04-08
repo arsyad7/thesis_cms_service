@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      tm_department.belongsTo(models.tm_users, { foreignKey: 'departement_id' });
     }
   };
   tm_department.init({
@@ -18,6 +19,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'tm_department',
+    timestamps: false,
+    freezeTableName: 'tm_department'
   });
   return tm_department;
 };

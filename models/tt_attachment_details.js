@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      tt_attachment_details.belongsTo(models.tt_attachment_header, { foreignKey: 'attachement_id' });
     }
   };
   tt_attachment_details.init({
@@ -21,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'tt_attachment_details',
+    timestamps: false
   });
   return tt_attachment_details;
 };
