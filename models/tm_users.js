@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      tm_users.hasOne(models.tm_department, { foreignKey: 'departement_id' });
+      tm_users.belongsTo(models.tm_department, { foreignKey: 'departement_id' });
       tm_users.hasMany(models.tt_contract_header, { foreignKey: 'creator' });
     }
   };
