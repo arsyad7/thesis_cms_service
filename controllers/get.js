@@ -3,10 +3,12 @@ const { tm_product, tm_vendor, tm_status, tm_contract_type, tm_users, tm_departm
 module.exports = {
   getProduct: async (req, res, next) => {
     try {
+      console.log("Before access db")
       const { page, perPage } = req.query,
         limit = perPage ? +perPage : 20,
         offset = page ? page * limit : 0,
         products = await tm_product.findAndCountAll({ limit, offset });
+      console.log("after access db")
       res.status(200).json({ products, totalPage: Math.ceil(products.count / limit), currentPage: page ? page : 0 })
     } catch (e) {
       next(e)
