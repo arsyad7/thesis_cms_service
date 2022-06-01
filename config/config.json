@@ -19,7 +19,7 @@
     "database": "u0202642_thesis_cms",
     "host": "guslam.com",
     "use_env_variable": "DATABASE_URL",
-    "ssl": true,
+    "ssl": false,
     "dialect": "mysql",
     "protocol": "mysql",
     "dialectOptions": {
