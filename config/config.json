@@ -22,11 +22,6 @@
     "ssl": true,
     "dialect": "mysql",
     "protocol": "mysql",
-    "dialectOptions": {
-      "ssl": {
-        "require": true,
-        "rejectUnauthorized": false
-      }
-    }
+    "dialectOptions": {}
   }
 }
