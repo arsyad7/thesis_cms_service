@@ -3,7 +3,7 @@
     "username": "u0202642_thesis_cms",
     "password": "llngiuxg80",
     "database": "u0202642_thesis_cms",
-    "host": "guslam.com",
+    "host": "srv69.niagahoster.com",
     "dialect": "mysql"
   },
   "test": {
@@ -17,7 +17,7 @@
     "username": "u0202642_thesis_cms",
     "password": "llngiuxg80",
     "database": "u0202642_thesis_cms",
-    "host": "guslam.com",
+    "host": "srv69.niagahoster.com",
     "use_env_variable": "DATABASE_URL",
     "ssl": true,
     "dialect": "mysql",
