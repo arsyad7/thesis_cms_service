@@ -14,7 +14,7 @@
     "dialect": "mysql"
   },
   "production": {
-    "user": "u0202642_thesis_cms",
+    "username": "u0202642_thesis_cms",
     "password": "llngiuxg80",
     "database": "u0202642_thesis_cms",
     "host": "guslam.com",
