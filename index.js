@@ -3,7 +3,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 const express = require('express'),
   app = express(),
-  port = process.env.PORT || 4747,
+  port = process.env.PORT || 5000,
   cors = require('cors'),
   r = require('./routes'),
   { ErrorHandler } = require('./middlewares/ErrorHandler');
