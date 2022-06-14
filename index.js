@@ -14,6 +14,6 @@ app.use(express.json());
 app.use(r);
 app.use(ErrorHandler);
 
-app.listen(port, () => {
+app.listen(port, process.env.NODE_ENV !== 'production' ? 'localhost' : '0.0.0.0', () => {
   console.log(`Thesis CMS is running on port ${port}`);
 })
