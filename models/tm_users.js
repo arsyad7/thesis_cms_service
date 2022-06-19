@@ -14,12 +14,17 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       tm_users.belongsTo(models.tm_department, { foreignKey: 'departement_id' });
       tm_users.hasMany(models.tt_contract_header, { foreignKey: 'creator' });
+      tm_users.belongsTo(models.tm_role, { foreignKey: 'role_id' });
     }
   };
   tm_users.init({
     username: DataTypes.STRING,
     password: DataTypes.STRING,
-    departement_id: DataTypes.INTEGER
+    departement_id: DataTypes.INTEGER,
+    suspend: DataTypes.STRING,
+    email: DataTypes.STRING,
+    phone: DataTypes.STRING,
+    role_id: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'tm_users',

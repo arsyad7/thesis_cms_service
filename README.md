@@ -141,6 +141,21 @@ response : {
 }
 ```
 
+## Create Role
+```
+method : POST
+url : /role
+request body : {
+    suspend : 'X',
+    name: 'test'
+}
+response : {
+    "id": 4,
+    "name": "test",
+    "suspend": ""
+}
+```
+
 # GET
 
 ## Get Product
@@ -323,6 +338,45 @@ response : {
         ]
     },
     "totalPage": 3,
+    "currentPage": 0
+}
+```
+
+## Get Roles
+```
+method : GET
+url : /roles
+query : {
+    page : 1,
+    perPage : 20 *default
+}
+response : {
+    "roles": {
+        "count": 4,
+        "rows": [
+            {
+                "id": 1,
+                "name": "Administrator",
+                "suspend": ""
+            },
+            {
+                "id": 2,
+                "name": "Staff",
+                "suspend": null
+            },
+            {
+                "id": 3,
+                "name": "Manager",
+                "suspend": null
+            },
+            {
+                "id": 4,
+                "name": "test",
+                "suspend": ""
+            }
+        ]
+    },
+    "totalPage": 1,
     "currentPage": 0
 }
 ```

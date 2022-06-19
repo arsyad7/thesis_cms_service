@@ -1,4 +1,5 @@
-const { tm_product, tm_vendor, tm_status, tm_contract_type, tm_users, tm_department, tt_contract_header } = require('../models');
+const { tm_product, tm_vendor, tm_status, tm_contract_type, tm_users, tm_department, tt_contract_header, tm_role } = require('../models');
+const tm_roles = require('../models/tm_roles');
 
 module.exports = {
   getProduct: async (req, res, next) => {
@@ -83,6 +84,17 @@ module.exports = {
       res.status(200).json({ transactions, totalPage: Math.ceil(transactions.count / limit), currentPage: page ? page : 0 })
     } catch (e) {
       next(e)
+    }
+  },  
+  getRoles: async (req, res, next) => {
+    try {
+      const { page, perPage} = req.query,
+        limit = perPage ? +perPage : 20,
+        offset = page ? page * limit : 0,
+        roles = await tm_role.findAndCountAll({limit, offset});
+      res.status(200).json({roles, totalPage: Math.ceil(roles.count / limit), currentPage: page ? page : 0})
+    } catch (err) {
+      next(err)
     }
   }
 }

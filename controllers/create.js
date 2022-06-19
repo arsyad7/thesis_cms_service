@@ -1,4 +1,4 @@
-const { tm_product, tm_vendor, tm_status, tm_contract_type, tm_department, tt_contract_header } = require('../models');
+const { tm_product, tm_vendor, tm_status, tm_contract_type, tm_department, tt_contract_header, tm_role } = require('../models');
 
 module.exports = {
   createProduct: async (req, res, next) => {
@@ -71,5 +71,15 @@ module.exports = {
       const contract = await tt_contract_header.create(payload);
       res.status(201).json(contract);
     } catch (e) { next(e) }
+  },
+  createRole: async (req, res, next) => {
+    try {
+      const { name, suspend = '' } = req.body;
+      if (!name) throw { status: 400, message: 'mohon masukkan nama' };
+      const role = await tm_role.create({ name, suspend });
+      res.status(201).json(role);
+    } catch (e) {
+      next(e)
+    }
   }
 }
