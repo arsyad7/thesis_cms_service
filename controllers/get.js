@@ -4,12 +4,10 @@ const tm_roles = require('../models/tm_roles');
 module.exports = {
   getProduct: async (req, res, next) => {
     try {
-      console.log("Before access db")
       const { page, perPage } = req.query,
         limit = perPage ? +perPage : 20,
         offset = page ? page * limit : 0,
         products = await tm_product.findAndCountAll({ limit, offset });
-      console.log("after access db")
       res.status(200).json({ products, totalPage: Math.ceil(products.count / limit), currentPage: page ? page : 0 })
     } catch (e) {
       next(e)
@@ -80,7 +78,7 @@ module.exports = {
       const { page, perPage } = req.query,
         limit = perPage ? +perPage : 20,
         offset = page ? page * limit : 0,
-        transactions = await tt_contract_header.findAndCountAll({ limit, offset });
+        transactions = await tt_contract_header.findAndCountAll({ limit, offset, include: [{ model: tm_users }, { model: tm_vendor }, { model: tm_contract_type }, { model: tm_status }] });
       res.status(200).json({ transactions, totalPage: Math.ceil(transactions.count / limit), currentPage: page ? page : 0 })
     } catch (e) {
       next(e)
@@ -95,6 +93,86 @@ module.exports = {
       res.status(200).json({roles, totalPage: Math.ceil(roles.count / limit), currentPage: page ? page : 0})
     } catch (err) {
       next(err)
+    }
+  },
+  getTransactionById: async (req, res, next) => {
+    try {
+      const { id } = req.params,
+        transaction = await tt_contract_header.findOne({ where: { id }, include: [{ model: tm_users }, { model: tm_vendor }, { model: tm_contract_type }, { model: tm_status }] });
+      if (!transaction) throw { status: 404, message: "transaction not found" };
+      res.status(200).json(transaction)
+    } catch (e) {
+      next(e)
+    }
+  },
+  getProductById: async (req, res, next) => {
+    try {
+      const { id } = req.params,
+        product = await tm_product.findOne({ where: { id } });
+      if (!product) throw { status: 404, message: "product not found" };
+      res.status(200).json(product)
+    } catch (e) {
+      next(e)
+    }
+  },
+  getVendorById: async (req, res, next) => {
+    try {
+      const { id } = req.params,
+        vendor = await tm_vendor.findOne({ where: { id } });
+      if (!vendor) throw { status: 404, message: "vendor not found" };
+      res.status(200).json(vendor)
+    } catch (e) {
+      next(e)
+    }
+  },
+  getStatusById: async (req, res, next) => {
+    try {
+      const { id } = req.params,
+        status = await tm_status.findOne({ where: { id } });
+      if (!status) throw { status: 404, message: "Status not found" };
+      res.status(200).json(status)
+    } catch (e) {
+      next(e)
+    }
+  },
+  getContractTypeById: async (req, res, next) => {
+    try {
+      const { id } = req.params,
+        contract_type = await tm_contract_type.findOne({ where: { id } });
+      if (!contract_type) throw { status: 404, message: "COntract Type not found" };
+      res.status(200).json(contract_type)
+    } catch (e) {
+      next(e)
+    }
+  },
+  getUserById: async (req, res, next) => {
+    try {
+      const { id } = req.params,
+        user = await tm_users.findOne({ where: { id } });
+      if (!user) throw { status: 404, message: "user not found"};
+      res.status(200).json(user)
+    } catch (e) {
+      next(e)
+    }
+  },
+  getDepartmentById: async (req, res, next) => {
+    try {
+      const { id } = req.params,
+        departement = await tm_department.findOne({ where: { id } });
+      if (!departement) throw { status: 404, message: "department not found" };
+      res.status(200).json(departement)
+    } catch (e) {
+      next(e)
+    }
+  },
+  getRolesById: async (req, res, next) => {
+    try {
+      const { id } = req.params,
+        role = await tm_role.findOne({ where: { id } });
+      if (!role) throw { status: 404, message: "role not found" };
+      res.status(200).json(role) 
+    } catch (e) {
+      next(e)
     }
   }
 }

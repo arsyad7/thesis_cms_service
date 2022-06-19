@@ -121,7 +121,6 @@ request body : {
   vendor_id: 1,
   status_id: 1,
   contract_type_id: 1,
-  creator: 1,
   created: '2022-04-07 17:00:00'
 }
 response : {

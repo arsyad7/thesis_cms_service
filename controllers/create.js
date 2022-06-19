@@ -60,8 +60,8 @@ module.exports = {
   },
   createTransactionContract: async (req, res, next) => {
     try {
-      const keys = ['product_id', 'name_jobs', 'location_jobs', 'est_period_start_jobs', 'est_period_end_jobs', 'est_amount_jobs', 'description', 'vendor_id', 'status_id', 'contract_type_id', 'creator', 'created'],
-        payload = {};
+      const keys = ['product_id', 'name_jobs', 'location_jobs', 'est_period_start_jobs', 'est_period_end_jobs', 'est_amount_jobs', 'description', 'vendor_id', 'status_id', 'contract_type_id', 'created'],
+        payload = { creator: req.user.id };
 
       for (let i = 0; i < keys.length; i++) {
         if (!Object.keys(req.body).includes(keys[i])) throw { status: 400, message: `mohon masukkan ${keys[i]}` }

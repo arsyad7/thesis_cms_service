@@ -16,7 +16,7 @@ module.exports = {
       const isPassValid = compare(password, user.password);
       if (!isPassValid) throw { status: 400, message: 'password salah' };
 
-      const token = sign({ username: user.username, id: user.id, departement_id: user.departement_id })
+      const token = sign({ username: user.username, id: user.id, departement_id: user.departement_id, role_id: user.role_id });
       res.status(200).json({ access_token: token })
     } catch (e) {
       next(e)
