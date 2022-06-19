@@ -1,6 +1,8 @@
 const r = require('express').Router(),
-  { getProduct, getUser, getVendor, getStatus, getContractType, getDepartement, getTransactionContract, getRoles } = require('../controllers/get');
+  { getProduct, getUser, getVendor, getStatus, getContractType, getDepartement, getTransactionContract, getRoles } = require('../controllers/get'),
+  { Authentication } = require('../middlewares/auth');
 
+r.use(Authentication);
 r.get('/products', getProduct);
 r.get('/users', getUser);
 r.get('/vendors', getVendor);

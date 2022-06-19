@@ -1,6 +1,8 @@
 const r = require('express').Router(),
-  { createProduct, createVendor, createStatus, createContractType, createDepartement, createTransactionContract, createRole } = require('../controllers/create')
+  { createProduct, createVendor, createStatus, createContractType, createDepartement, createTransactionContract, createRole } = require('../controllers/create'),
+  {Authentication} = require('../middlewares/auth');
 
+r.use(Authentication);
 r.post('/product', createProduct);
 r.post('/vendor', createVendor);
 r.post('/status', createStatus);

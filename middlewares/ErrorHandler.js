@@ -6,6 +6,5 @@ exports.ErrorHandler = (err, req, res, next) => {
     status = err.response.status ? err.response.status : 500;
     message = err.response.data.message;
   }
-  console.log(err, 'INI ERRORNYA')
   return res.status(status).json({ status, message });
 }
